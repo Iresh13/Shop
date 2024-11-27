@@ -1,3 +1,7 @@
 export const Routes = {
-  HOME: "/home",
+  HOME: "/",
+  MEN: "/men",
+  WOMEN: "./women",
+  KIDS: "./kids",
+  SPORTS: "./sports",
 };

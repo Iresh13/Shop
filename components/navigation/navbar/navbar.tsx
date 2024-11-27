@@ -1,21 +1,18 @@
-import Image from "next/image";
 import React from "react";
 import Theme from "./theme";
-import { Heart, ShoppingCart, User } from "lucide-react";
+import { Heart, ShoppingBag, ShoppingCart, User } from "lucide-react";
 import SearchBar from "@/components/search-bar/search-bar";
 import Link from "next/link";
 import { NavLinks, NavLinkType } from "@/constants/nav-links";
 import SideBar from "./side-bar";
+import Logo from "../logo";
 
 const Navbar = () => {
   return (
-    <div className="p-4 sticky gap-4 dark:bg-primary bg-white w-full flex flex-col border-primary border-b-2">
+    <div className="p-4 sticky gap-4 w-full flex flex-col border-none bg-primary-50 dark:bg-black-800">
       <div className="flex items-center gap-20 justify-between">
-        <Link className="items-center flex gap-3 mobile-view" href="/">
-          <Image alt="image-logo" src="/icon.png" height={50} width={50} />
-          <h1 className="text-3xl font-bold text-primary dark:text-white">
-            ShopCo
-          </h1>
+        <Link href="/" className="mobile-view">
+          <Logo />
         </Link>
 
         <div className="desktop-view">
@@ -26,7 +23,7 @@ const Navbar = () => {
           {NavLinks.map((link: NavLinkType) => {
             return (
               <Link href={link.link} key={link.title}>
-                <h3 className="text-xl font-semibold dark:text-white text-primary">
+                <h3 className="text-2xl font-semibold text-dark300_light600">
                   {link.title}
                 </h3>
               </Link>
@@ -39,14 +36,14 @@ const Navbar = () => {
         </div>
 
         <section className="flex items-center gap-6">
-          <Link href="/">
+          <Link href="/" className="text-dark300_light600">
             <Heart />
           </Link>
           <Link href="/">
-            <ShoppingCart />
+            <ShoppingCart className="text-dark300_light600" />
           </Link>
           <Link href="/">
-            <User />
+            <User className="text-dark300_light600" />
           </Link>
           <Theme />
         </section>

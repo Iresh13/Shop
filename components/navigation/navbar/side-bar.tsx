@@ -14,7 +14,7 @@ const SideBar = () => {
   return (
     <Sheet>
       <SheetTrigger>
-        <Menu />
+        <Menu className="h-6 w-6 text-dark100_light800" />
       </SheetTrigger>
       <SheetContent side="left" className="border-none bg-dark100_light800">
         <SheetHeader>
@@ -24,7 +24,7 @@ const SideBar = () => {
               {NavLinks.map((link: NavLinkType) => {
                 return (
                   <Link href={link.link} key={link.title}>
-                    <h3 className="text-xl font-semibold dark:text-white text-primary">
+                    <h3 className="text-2xl font-semibold text-dark800_light100">
                       {link.title}
                     </h3>
                   </Link>

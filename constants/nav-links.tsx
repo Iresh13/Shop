@@ -17,22 +17,22 @@ export const NavLinks: NavLinkType[] = [
 
   {
     title: "Men",
-    link: Routes.HOME,
+    link: Routes.MEN,
     icon: <Home size={28} />,
   },
   {
     title: "Women",
-    link: Routes.HOME,
+    link: Routes.WOMEN,
     icon: <Home size={28} />,
   },
   {
     title: "Kids",
-    link: Routes.HOME,
+    link: Routes.KIDS,
     icon: <Home size={28} />,
   },
   {
     title: "Sports",
-    link: Routes.HOME,
+    link: Routes.SPORTS,
     icon: <Home size={28} />,
   },
 ];

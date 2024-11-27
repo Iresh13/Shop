@@ -8,8 +8,14 @@ import Footer from "@/components/navigation/footer/footer";
 
 const parkinsans = localFont({
   src: "./fonts/ParkinsansVF.ttf",
-  variable: "--font-geist-sans",
+  variable: "--font-parkinsans",
   weight: "100 200 300 400 500 600 700 800 900",
+});
+
+const spaceGrotesk = localFont({
+  src: "./fonts/SpaceGroteskVF.ttf",
+  variable: "--font-space-grotesk",
+  weight: "100 300 200 400 500 600 700 800 900",
 });
 
 export const metadata: Metadata = {
@@ -24,7 +30,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${parkinsans.className}  antialiased`}>
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body
+        className={`${parkinsans.className}  ${spaceGrotesk.variable} antialiased`}
+      >
         <ThemeProvider
           defaultTheme="system"
           disableTransitionOnChange

@@ -2,6 +2,8 @@ import { Product } from '@/schemas/product-schema'
 import Image from 'next/image'
 import React, { Fragment } from 'react'
 import { Button } from '../ui/button'
+import { Routes } from '@/constants/routes'
+import Link from 'next/link'
 
 const ProductCard = ({ product }: { product: Product }) => {
     return (
@@ -45,9 +47,16 @@ const ProductCard = ({ product }: { product: Product }) => {
                                         <h4 className="text-xl font-semibold text-dark-700">
                                             ${product.price}
                                         </h4>
-                                        <Button className="rounded-md bg-primary-700 px-8 py-5 text-xl text-light-50 hover:bg-primary-600">
-                                            Buy Now
-                                        </Button>
+
+                                        <Link
+                                            href={Routes.PRODUCT(
+                                                String(product.id)
+                                            )}
+                                        >
+                                            <Button className="rounded-md bg-primary-700 px-8 py-5 text-xl text-light-50 hover:bg-primary-600">
+                                                Buy Now
+                                            </Button>
+                                        </Link>
                                     </div>
                                 </section>
                             </div>

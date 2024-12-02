@@ -1,5 +1,6 @@
 import {
     Sheet,
+    SheetClose,
     SheetContent,
     SheetDescription,
     SheetHeader,
@@ -19,19 +20,21 @@ const SideBar = () => {
             <SheetContent side="left" className="border-none bg-primary-800">
                 <SheetHeader>
                     <SheetTitle className="hidden">ShopCo</SheetTitle>
-                    <SheetDescription>
-                        <div className="flex flex-col gap-4">
-                            {NavLinks.map((link: NavLinkType) => {
-                                return (
-                                    <Link href={link.link} key={link.title}>
-                                        <h3 className="text-2xl font-semibold text-primary-100">
-                                            {link.title}
-                                        </h3>
+
+                    <div className="flex flex-col gap-4">
+                        {NavLinks.map((link: NavLinkType) => {
+                            return (
+                                <SheetClose asChild key={link.title}>
+                                    <Link
+                                        href={link.link}
+                                        className="text-2xl font-semibold text-primary-100"
+                                    >
+                                        {link.title}
                                     </Link>
-                                )
-                            })}
-                        </div>
-                    </SheetDescription>
+                                </SheetClose>
+                            )
+                        })}
+                    </div>
                 </SheetHeader>
             </SheetContent>
         </Sheet>

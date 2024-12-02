@@ -47,7 +47,7 @@ const Footer = () => {
                         Stay in touch
                     </p>
 
-                    <section className="flex flex-col gap-5 lg:flex-row">
+                    <section className="flex flex-col gap-5 xl:flex-row">
                         <Input
                             placeholder="Email"
                             className="no-focus placeholder min-h-12 min-w-full border-2 border-dark-600 text-lg shadow-none dark:border-light-300"

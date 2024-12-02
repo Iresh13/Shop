@@ -5,9 +5,9 @@ export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs))
 }
 
-export function convertObjectToQueryParams(
+export const convertObjectToQueryParams = (
     filters: Record<string, string | number>
-) {
+): string => {
     return Object.entries(filters)
         .map(
             ([key, value]) =>

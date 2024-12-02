@@ -17,7 +17,11 @@ export async function GET(
     try {
         const data = await getData(`/products/${id}`, ProductSchema)
 
-        return NextResponse.json(data)
+        if (data) {
+            return NextResponse.json(data)
+        }
+
+        throw new NotFoundError('Product')
     } catch (error) {
         handleError(error, 'api')
     }

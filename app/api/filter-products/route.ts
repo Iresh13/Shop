@@ -1,6 +1,6 @@
 import { getData } from '@/app/services/platzi'
 import { handleError } from '@/lib/handlers/error'
-import { ValidationError } from '@/lib/http-error'
+import { NotFoundError, ValidationError } from '@/lib/http-error'
 import { convertObjectToQueryParams } from '@/lib/utils'
 import { FilterSchema } from '@/schemas/filter-schema'
 import { ProductSchema } from '@/schemas/product-schema'
@@ -24,7 +24,11 @@ export async function POST(request: Request) {
             z.array(ProductSchema)
         )
 
-        return NextResponse.json(response)
+        if (response) {
+            return NextResponse.json(response)
+        }
+
+        throw new NotFoundError('Products')
     } catch (error) {
         return handleError(error, 'api')
     }

@@ -1,11 +1,11 @@
 import { getData } from '@/app/services/platzi'
 import { handleError } from '@/lib/handlers/error'
 import { NotFoundError } from '@/lib/http-error'
-import { ProductSchema } from '@/schemas/product-schema'
+import { Product, ProductSchema } from '@/schemas/product-schema'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
-export async function GET() {
+export async function GET(): Promise<NextResponse<Product[]> | undefined> {
     try {
         const data = await getData('/products', z.array(ProductSchema))
 

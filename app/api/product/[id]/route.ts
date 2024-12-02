@@ -1,13 +1,13 @@
 import { getData } from '@/app/services/platzi'
 import { handleError } from '@/lib/handlers/error'
 import { NotFoundError } from '@/lib/http-error'
-import { ProductSchema } from '@/schemas/product-schema'
+import { Product, ProductSchema } from '@/schemas/product-schema'
 import { NextResponse } from 'next/server'
 
 export async function GET(
     _: Request,
     { params }: { params: Promise<{ id: string }> }
-) {
+): Promise<NextResponse<Product> | undefined> {
     const { id } = await params
 
     if (!id) {

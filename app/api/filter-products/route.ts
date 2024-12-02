@@ -3,11 +3,13 @@ import { handleError } from '@/lib/handlers/error'
 import { NotFoundError, ValidationError } from '@/lib/http-error'
 import { convertObjectToQueryParams } from '@/lib/utils'
 import { FilterSchema } from '@/schemas/filter-schema'
-import { ProductSchema } from '@/schemas/product-schema'
+import { Product, ProductSchema } from '@/schemas/product-schema'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
-export async function POST(request: Request) {
+export async function POST(
+    request: Request
+): Promise<NextResponse<Product[]> | undefined> {
     const body = await request.json()
 
     const validatedFilters = await FilterSchema.safeParse(body)

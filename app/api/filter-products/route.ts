@@ -32,6 +32,6 @@ export async function POST(
 
         throw new NotFoundError('Products')
     } catch (error) {
-        return handleError(error, 'api')
+        handleError(error, 'api')
     }
 }

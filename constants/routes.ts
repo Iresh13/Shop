@@ -4,6 +4,6 @@ export const Routes = {
     WOMEN: '/women',
     KIDS: '/kids',
     SPORTS: '/sports',
-    CATEGORY: (id: string) => `/categories/${id}`,
+    CATEGORY: (id: string) => `/categories?categoryId=${id}`,
     PRODUCT: (id: string) => `/product/${id}`,
 }

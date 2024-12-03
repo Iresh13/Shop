@@ -6,4 +6,5 @@ export const Routes = {
     SPORTS: '/sports',
     CATEGORY: (id: string) => `/categories?categoryId=${id}`,
     PRODUCT: (id: string) => `/product/${id}`,
+    FAVORITES: '/favorites',
 }

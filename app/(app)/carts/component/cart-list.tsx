@@ -1,13 +1,11 @@
 'use client'
 
 import { useAtomValue } from 'jotai/react'
-import { Product } from '@/schemas/product-schema'
 import { cartReducerAtom } from '@/atoms/cart/reducer'
 
 import CartCard from '@/components/cards/cart-card'
 import { Cart } from '@/atoms/cart/schema'
 import CheckoutButton from '@/components/buttons/checkout'
-import { Fragment } from 'react'
 import EmptyList from '@/components/banner/empty-list'
 
 export default function CartList() {

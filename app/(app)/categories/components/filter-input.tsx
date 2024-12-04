@@ -39,7 +39,7 @@ const FilterInput = () => {
 
     return (
         <div className="flex w-full flex-col gap-4">
-            <Label className="text-lg font-medium text-dark-800">
+            <Label className="text-lg font-medium text-dark-800 dark:text-light-200">
                 Search Product by Name
             </Label>
 

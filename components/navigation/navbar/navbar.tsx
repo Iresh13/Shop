@@ -1,12 +1,13 @@
 import React from 'react'
+import Logo from '../logo'
+import Link from 'next/link'
 import Theme from './theme'
+import SideBar from './side-bar'
+import FavIcon from './components/fav-icon'
+import CartIcon from './components/cart-icon'
 import { ShoppingCart, User } from 'lucide-react'
 import SearchBar from '@/components/search-bar/search-bar'
-import Link from 'next/link'
 import { NavLinks, NavLinkType } from '@/constants/nav-links'
-import SideBar from './side-bar'
-import Logo from '../logo'
-import FavIcon from './components/fav-icon'
 
 const Navbar = () => {
     return (
@@ -38,9 +39,9 @@ const Navbar = () => {
 
                 <section className="flex items-center gap-6">
                     <FavIcon />
-                    <Link href="/">
-                        <ShoppingCart className="text-primary-600" />
-                    </Link>
+
+                    <CartIcon />
+
                     <Link href="/">
                         <User className="text-primary-600" />
                     </Link>

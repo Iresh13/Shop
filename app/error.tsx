@@ -22,7 +22,7 @@ export default function GlobalError({ error }: { error: Error }) {
 
             <div className="flex flex-col items-center justify-center gap-3">
                 <Button
-                    className="min-h-12 rounded-md bg-dark-400 px-12 py-5 text-lg text-light-100 shadow-sm hover:bg-dark-500 hover:dark:bg-dark-300"
+                    className="min-h-12 rounded-md bg-dark-500 px-12 py-5 text-lg text-light-100 shadow-sm hover:bg-dark-600 hover:dark:bg-dark-300"
                     data-testid="refresh"
                     aria-label="refresh"
                     onClick={() => router.refresh()}
@@ -33,7 +33,7 @@ export default function GlobalError({ error }: { error: Error }) {
                 {isHomePage && (
                     <Link data-testid="back_to_home" href="/">
                         <Button
-                            className="min-h-12 rounded-md bg-dark-400 px-12 py-5 text-lg text-light-100 shadow-sm hover:bg-dark-500 hover:dark:bg-dark-300"
+                            className="min-h-12 rounded-md bg-dark-500 px-12 py-5 text-lg text-light-100 shadow-sm hover:bg-dark-600 hover:dark:bg-dark-300"
                             aria-label="return_home"
                         >
                             Return to home

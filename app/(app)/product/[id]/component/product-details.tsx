@@ -1,14 +1,20 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-import { Product } from '@/schemas/product-schema'
-
-import { Heart } from 'lucide-react'
 import Image from 'next/image'
 import React, { useState } from 'react'
+import { useAtomValue } from 'jotai/react'
+import AddToCartButton from './add-cart-button'
+import { Product } from '@/schemas/product-schema'
+import { cartReducerAtom } from '@/atoms/cart/reducer'
+import FavButton from '@/components/buttons/fav-button'
+import CartCounter from '@/components/buttons/cart-counter'
 
 export default function ProductDetails({ product }: { product: Product }) {
     const [selectedImage, setSelectedImage] = useState<number>(0)
+
+    const carts = useAtomValue(cartReducerAtom)
+
+    const isAddedToCart = carts.some((c) => c.id === product.id)
 
     return (
         <div className="flex w-full flex-col gap-10 lg:flex-row">
@@ -44,7 +50,7 @@ export default function ProductDetails({ product }: { product: Product }) {
                         {product?.description}
                     </p>
 
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
                         <div className="flex flex-col gap-2">
                             <p className="text-md font-light text-dark-400">
                                 Price:{' '}
@@ -62,20 +68,15 @@ export default function ProductDetails({ product }: { product: Product }) {
                         </div>
 
                         <section className="flex flex-col gap-3 lg:flex-row">
-                            <Button
-                                size="icon"
-                                className="min-h-12 rounded-md border-2 border-dark-400 bg-transparent px-12 py-5 text-lg text-dark-600 shadow-sm hover:bg-primary-500 hover:text-dark-300"
-                                aria-label="add_cart"
-                            >
-                                <Heart className="text-lg" />
-                            </Button>
+                            <FavButton
+                                product={product}
+                                styles="min-h-12 bg-dark-500 hover:bg-dark-600"
+                            />
 
-                            <Button
-                                className="min-h-12 rounded-md bg-dark-400 px-12 py-5 text-lg text-light-100 shadow-sm hover:bg-dark-500 hover:dark:bg-dark-300"
-                                aria-label="add_cart"
-                            >
-                                Add to cart
-                            </Button>
+                            {isAddedToCart && <CartCounter product={product} />}
+                            {!isAddedToCart && (
+                                <AddToCartButton product={product} />
+                            )}
                         </section>
                     </div>
                 </section>

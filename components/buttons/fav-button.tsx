@@ -9,7 +9,13 @@ import { useAtom } from 'jotai/react'
 import { FavoriteActions } from '@/atoms/favorite/action'
 import { cn } from '@/lib/utils'
 
-const FavButton = ({ product }: { product: Product }) => {
+const FavButton = ({
+    product,
+    styles,
+}: {
+    product: Product
+    styles?: string
+}) => {
     const [favorites, dispatch] = useAtom(favoriteReducerAtom)
 
     const isFavorite = favorites.some((p) => p.id === product.id)
@@ -31,14 +37,14 @@ const FavButton = ({ product }: { product: Product }) => {
     return (
         <Button
             className={cn(
-                'text-black-50 rounded-md bg-primary-200 px-8 py-5 text-xl shadow-none hover:bg-primary-600',
-                { 'bg-dark-700 text-white': isFavorite }
+                `text-black-50 max-w-8 rounded-md bg-primary-200 px-8 py-5 text-xl shadow-none hover:bg-primary-600 ${styles}`,
+                { 'bg-dark-700': isFavorite }
             )}
             onClick={() => handleFavorite()}
         >
-            {isFavorite && <Check className="text-lg" />}
+            {isFavorite && <Check className="text-lg text-white" />}
 
-            {!isFavorite && <Heart className="text-lg" />}
+            {!isFavorite && <Heart className="text-lg text-white" />}
         </Button>
     )
 }

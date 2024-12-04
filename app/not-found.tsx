@@ -20,7 +20,7 @@ const NotFound = () => {
                     href="/"
                 >
                     <Button
-                        className="min-h-12 rounded-md bg-dark-400 px-12 py-5 text-lg text-light-100 shadow-sm hover:bg-dark-500 hover:dark:bg-dark-300"
+                        className="min-h-12 rounded-md bg-dark-500 px-12 py-5 text-lg text-light-100 shadow-sm hover:bg-dark-600 hover:dark:bg-dark-300"
                         aria-label="return_home"
                     >
                         Return to home

@@ -4,6 +4,9 @@ import { Category } from '@/schemas/category-schema'
 import BannerCard from '@/components/banner/banner-card'
 import ProductCard from '@/components/cards/product-card'
 import CategoryCard from '@/components/cards/category-card'
+import Link from 'next/link'
+import { Routes } from '@/constants/routes'
+import { Button } from '@/components/ui/button'
 
 export default async function Home() {
     const res = await fetch('http://localhost:3000/api/product')
@@ -25,7 +28,8 @@ export default async function Home() {
                         categories.map((category: Category, index: number) => {
                             return (
                                 <Fragment key={index}>
-                                    {category.image &&
+                                    {index <= 4 &&
+                                        category.image &&
                                         category.name.toLowerCase() !==
                                             'new category' && (
                                             <CategoryCard
@@ -48,9 +52,10 @@ export default async function Home() {
                         products.map((product: Product, index: number) => {
                             return (
                                 <Fragment key={index}>
-                                    {!product.title
-                                        .toLowerCase()
-                                        .includes('new') &&
+                                    {index <= 8 &&
+                                        !product.title
+                                            .toLowerCase()
+                                            .includes('new') &&
                                         !product.title
                                             .toLowerCase()
                                             .includes('test') && (
@@ -60,6 +65,15 @@ export default async function Home() {
                             )
                         })}
                 </div>
+
+                <Link href={Routes.PRODUCTS}>
+                    <Button
+                        className="min-h-12 rounded-md bg-dark-500 px-12 py-5 text-lg text-light-100 shadow-sm hover:bg-dark-600 hover:dark:bg-dark-300"
+                        aria-label="view_more"
+                    >
+                        View more
+                    </Button>
+                </Link>
             </section>
         </Fragment>
     )

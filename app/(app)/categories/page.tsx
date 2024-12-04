@@ -1,3 +1,4 @@
+import EmptyList from '@/components/banner/empty-list'
 import ProductCard from '@/components/cards/product-card'
 import { Product } from '@/schemas/product-schema'
 import { Filter } from '@/types/filter'
@@ -43,6 +44,13 @@ const Viewer = async ({ searchParams }: SearchParamsProps) => {
                         }
                     )}
             </div>
+
+            {filteredProducts?.data?.length <= 0 && (
+                <EmptyList
+                    title="No products found"
+                    message="Please check other categories"
+                />
+            )}
         </div>
     )
 }

@@ -5,7 +5,7 @@ import Theme from './theme'
 import SideBar from './side-bar'
 import FavIcon from './components/fav-icon'
 import CartIcon from './components/cart-icon'
-import { ShoppingCart, User } from 'lucide-react'
+import { User } from 'lucide-react'
 import SearchBar from '@/components/search-bar/search-bar'
 import { NavLinks, NavLinkType } from '@/constants/nav-links'
 
@@ -21,7 +21,7 @@ const Navbar = () => {
                     <SideBar />
                 </div>
 
-                <div className="mobile-view items-center justify-between gap-8">
+                <div className="mobile-view items-center justify-between gap-5">
                     {NavLinks.map((link: NavLinkType) => {
                         return (
                             <Link href={link.link} key={link.title}>

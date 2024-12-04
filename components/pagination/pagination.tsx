@@ -86,15 +86,19 @@ export function PaginationComponent({
                 <PaginationItem>
                     <PaginationPrevious
                         onClick={onPrevious}
-                        className="cursor-pointer"
+                        className="cursor-pointer text-dark-700 dark:text-light-100"
                     />
                 </PaginationItem>
 
                 {getPageNumbers().map((pageNumber) => (
-                    <PaginationItem key={pageNumber} className="cursor-pointer">
+                    <PaginationItem
+                        key={pageNumber}
+                        className="cursor-pointer border-dark-700"
+                    >
                         <PaginationLink
                             isActive={pageNumber === currentPage}
                             onClick={(e) => setPage(e, pageNumber)}
+                            className="text-dark-700 dark:text-light-100"
                         >
                             {pageNumber}
                         </PaginationLink>
@@ -103,7 +107,7 @@ export function PaginationComponent({
 
                 {totalPages > maxVisiblePages &&
                     currentPage < totalPages - 1 && (
-                        <PaginationItem className="cursor-pointer">
+                        <PaginationItem className="cursor-pointer text-dark-700 dark:text-light-100">
                             <PaginationEllipsis />
                         </PaginationItem>
                     )}
@@ -111,7 +115,7 @@ export function PaginationComponent({
                 <PaginationItem>
                     <PaginationNext
                         onClick={onNext}
-                        className="cursor-pointer"
+                        className="cursor-pointer text-dark-700 dark:text-light-100"
                     />
                 </PaginationItem>
             </PaginationContent>

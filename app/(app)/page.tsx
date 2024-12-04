@@ -28,15 +28,12 @@ export default async function Home() {
                         categories.map((category: Category, index: number) => {
                             return (
                                 <Fragment key={index}>
-                                    {index <= 4 &&
-                                        category.image &&
-                                        category.name.toLowerCase() !==
-                                            'new category' && (
-                                            <CategoryCard
-                                                category={category}
-                                                key={index}
-                                            />
-                                        )}
+                                    {index <= 4 && (
+                                        <CategoryCard
+                                            category={category}
+                                            key={index}
+                                        />
+                                    )}
                                 </Fragment>
                             )
                         })}
@@ -52,15 +49,9 @@ export default async function Home() {
                         products.map((product: Product, index: number) => {
                             return (
                                 <Fragment key={index}>
-                                    {index <= 8 &&
-                                        !product.title
-                                            .toLowerCase()
-                                            .includes('new') &&
-                                        !product.title
-                                            .toLowerCase()
-                                            .includes('test') && (
-                                            <ProductCard product={product} />
-                                        )}
+                                    {index <= 8 && (
+                                        <ProductCard product={product} />
+                                    )}
                                 </Fragment>
                             )
                         })}

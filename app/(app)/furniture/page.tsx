@@ -1,16 +1,22 @@
-import React, { ReactNode } from 'react'
-import PageFilter from '@/components/filter/filter'
+import React from 'react'
 import { Filter } from '@/types/filter'
+import PageFilter from '@/components/filter/filter'
 import { Product } from '@/schemas/product-schema'
-import ProductCard from '@/components/cards/product-card'
 import EmptyList from '@/components/banner/empty-list'
+import ProductCard from '@/components/cards/product-card'
+import { PaginationComponent } from '@/components/pagination/pagination'
 
 const Furniture = async ({
     searchParams,
 }: {
     searchParams: Promise<Filter>
 }) => {
-    const { title = '', price_min = '', price_max = '' } = await searchParams
+    const {
+        title = '',
+        page = '1',
+        price_min = '',
+        price_max = '',
+    } = await searchParams
 
     const filteredFurnitureProducts = await fetch(
         'http://localhost:3000/api/filter-products',
@@ -21,9 +27,11 @@ const Furniture = async ({
             },
             body: JSON.stringify({
                 title: title,
+                limit: 9,
+                categoryId: 3,
                 price_max: Number(price_max),
                 price_min: Number(price_min),
-                categoryId: 3,
+                offset: (Number(page) - 1) * 9,
             }),
         }
     )
@@ -56,6 +64,11 @@ const Furniture = async ({
                     />
                 )}
             </div>
+
+            <PaginationComponent
+                maxVisiblePages={3}
+                currentPage={Number(page)}
+            />
         </div>
     )
 }

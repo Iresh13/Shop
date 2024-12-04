@@ -5,9 +5,19 @@ import { Product, ProductSchema } from '@/schemas/product-schema'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
-export async function GET(): Promise<NextResponse<Product[]> | undefined> {
+export async function GET(
+    request: Request
+): Promise<NextResponse<Product[]> | undefined> {
+    const url = new URL(request.url)
+
+    const limit = url.searchParams.get('limit') || '10'
+    const offset = url.searchParams.get('offset') || '0'
+
     try {
-        const data = await getData('/products', z.array(ProductSchema))
+        const data = await getData(
+            `/products?limit=${limit}&offset=${offset}`,
+            z.array(ProductSchema)
+        )
 
         if (data) {
             return NextResponse.json(data?.data)

@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 
 import { ProductCard } from '@/components/cards/product-card'
 import { PaginationComponent } from '@/components/pagination/pagination'
+import * as http from '@/lib/handlers/http'
 import { Product } from '@/schemas/product-schema'
 
 export default async function Products({
@@ -13,11 +14,9 @@ export default async function Products({
 
     const offset = (Number(page) - 1) * 12
 
-    const res = await fetch(
+    const products = await http.get(
         `http://localhost:3000/api/product?limit=12&offset=${offset}`
     )
-
-    const products = await res.json()
 
     return (
         <div className="flex flex-col gap-10">

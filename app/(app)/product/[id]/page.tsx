@@ -1,5 +1,7 @@
 import React from 'react'
 
+import * as http from '@/lib/handlers/http'
+
 import ProductDetails from './component/product-details'
 
 export default async function ProductView({
@@ -9,7 +11,7 @@ export default async function ProductView({
 }) {
     const { id } = await params
 
-    const res = await fetch('http://localhost:3000/api/product/' + id)
+    const res = await http.get('http://localhost:3000/api/product/' + id)
     const { data: product } = await res.json()
 
     return <ProductDetails product={product} />

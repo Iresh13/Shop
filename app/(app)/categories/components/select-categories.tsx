@@ -14,14 +14,9 @@ import { FilterQuery } from '@/constants/filter'
 import { formUrlQuery } from '@/lib/url'
 import { Category } from '@/schemas/category-schema'
 
-
 const SelectCategories = ({ categories }: { categories: Category[] }) => {
     const searchParams = useSearchParams()
     const router = useRouter()
-
-    const id = searchParams.get(FilterQuery.CATEGORY_ID) || 1
-
-    console.log(id)
 
     const handleChange = (id: string) => {
         const newUrl = formUrlQuery({

@@ -4,6 +4,7 @@ import { EmptyList } from '@/components/banner/empty-list'
 import { ProductCard } from '@/components/cards/product-card'
 import { PageFilter } from '@/components/filter/filter'
 import { PaginationComponent } from '@/components/pagination/pagination'
+import * as http from '@/lib/handlers/http'
 import { Product } from '@/schemas/product-schema'
 import { Filter } from '@/types/filter'
 
@@ -19,25 +20,16 @@ export default async function Electronics({
         price_max = '',
     } = await searchParams
 
-    const filteredElectronicsProducts = await fetch(
+    const electronicsProducts = await http.post(
         'http://localhost:3000/api/filter-products',
         {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                limit: 9,
-                title: title,
-                categoryId: 2,
-                price_max: Number(price_max),
-                price_min: Number(price_min),
-                offset: (Number(page) - 1) * 9,
-            }),
+            limit: 9,
+            title: title,
+            categoryId: 2,
+            price_max: Number(price_max),
+            price_min: Number(price_min),
         }
     )
-
-    const electronicsProducts = await filteredElectronicsProducts.json()
 
     return (
         <div className="flex flex-1 flex-col gap-10">

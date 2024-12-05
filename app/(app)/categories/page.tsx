@@ -2,6 +2,7 @@ import React from 'react'
 
 import { EmptyList } from '@/components/banner/empty-list'
 import { ProductCard } from '@/components/cards/product-card'
+import * as http from '@/lib/handlers/http'
 import { Product } from '@/schemas/product-schema'
 import { Filter } from '@/types/filter'
 
@@ -17,23 +18,15 @@ export default async function Categories({ searchParams }: SearchParamsProps) {
         categoryId = '',
     } = await searchParams
 
-    const filteredResponse = await fetch(
+    const filteredProducts = await http.post(
         'http://localhost:3000/api/filter-products',
         {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                title: title,
-                price_max: Number(price_max),
-                price_min: Number(price_min),
-                categoryId: Number(categoryId),
-            }),
+            title: title,
+            price_max: Number(price_max),
+            price_min: Number(price_min),
+            categoryId: Number(categoryId),
         }
     )
-
-    const filteredProducts = await filteredResponse.json()
 
     return (
         <div className="flex flex-col items-center justify-center gap-6">

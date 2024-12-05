@@ -1,16 +1,17 @@
 import React from 'react'
-import { Filter } from '@/types/filter'
-import PageFilter from '@/components/filter/filter'
-import { Product } from '@/schemas/product-schema'
-import EmptyList from '@/components/banner/empty-list'
-import ProductCard from '@/components/cards/product-card'
-import { PaginationComponent } from '@/components/pagination/pagination'
 
-const Furniture = async ({
+import { EmptyList } from '@/components/banner/empty-list'
+import { ProductCard } from '@/components/cards/product-card'
+import { PageFilter } from '@/components/filter/filter'
+import { PaginationComponent } from '@/components/pagination/pagination'
+import { Product } from '@/schemas/product-schema'
+import { Filter } from '@/types/filter'
+
+export default async function Furniture({
     searchParams,
 }: {
     searchParams: Promise<Filter>
-}) => {
+}) {
     const {
         title = '',
         page = '1',
@@ -39,7 +40,7 @@ const Furniture = async ({
     const furnitureProducts = await filteredFurnitureProducts.json()
 
     return (
-        <div className="flex flex-1 flex-col items-center gap-10">
+        <div className="flex flex-1 flex-col gap-10">
             <PageFilter />
 
             <div className="flex flex-col items-center justify-center gap-6">
@@ -72,5 +73,3 @@ const Furniture = async ({
         </div>
     )
 }
-
-export default Furniture

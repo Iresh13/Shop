@@ -1,15 +1,19 @@
-import React from 'react'
-import Logo from '../logo'
-import Link from 'next/link'
-import Theme from './theme'
-import SideBar from './side-bar'
-import FavIcon from './components/fav-icon'
-import CartIcon from './components/cart-icon'
 import { User } from 'lucide-react'
+import Link from 'next/link'
+import React from 'react'
+
 import SearchBar from '@/components/search-bar/search-bar'
 import { NavLinks, NavLinkType } from '@/constants/nav-links'
 
-const Navbar = () => {
+import Logo from '../logo'
+import { CartIcon } from './components/cart-icon'
+import { FavIcon } from './components/fav-icon'
+import SideBar from './side-bar'
+import Theme from './theme'
+
+
+
+export default function Navbar() {
     return (
         <div className="sticky flex w-full flex-col gap-4 border-none bg-primary-50 p-4 dark:bg-black-800">
             <div className="flex items-center justify-between gap-10">
@@ -55,5 +59,3 @@ const Navbar = () => {
         </div>
     )
 }
-
-export default Navbar

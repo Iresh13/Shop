@@ -1,12 +1,13 @@
-import { Fragment } from 'react'
-import { Product } from '@/schemas/product-schema'
-import { Category } from '@/schemas/category-schema'
-import BannerCard from '@/components/banner/banner-card'
-import ProductCard from '@/components/cards/product-card'
-import CategoryCard from '@/components/cards/category-card'
 import Link from 'next/link'
-import { Routes } from '@/constants/routes'
+import { Fragment } from 'react'
+
+import { BannerCard } from '@/components/banner/banner-card'
+import { CategoryCard } from '@/components/cards/category-card'
+import { ProductCard } from '@/components/cards/product-card'
 import { Button } from '@/components/ui/button'
+import { Routes } from '@/constants/routes'
+import { Category } from '@/schemas/category-schema'
+import { Product } from '@/schemas/product-schema'
 
 export default async function Home() {
     const res = await fetch('http://localhost:3000/api/product')

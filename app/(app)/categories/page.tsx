@@ -1,14 +1,15 @@
-import EmptyList from '@/components/banner/empty-list'
-import ProductCard from '@/components/cards/product-card'
+import React from 'react'
+
+import { EmptyList } from '@/components/banner/empty-list'
+import { ProductCard } from '@/components/cards/product-card'
 import { Product } from '@/schemas/product-schema'
 import { Filter } from '@/types/filter'
-import React from 'react'
 
 export interface SearchParamsProps {
     searchParams: Promise<Filter>
 }
 
-const Viewer = async ({ searchParams }: SearchParamsProps) => {
+export default async function Categories({ searchParams }: SearchParamsProps) {
     const {
         title = '',
         price_min = '',
@@ -54,5 +55,3 @@ const Viewer = async ({ searchParams }: SearchParamsProps) => {
         </div>
     )
 }
-
-export default Viewer

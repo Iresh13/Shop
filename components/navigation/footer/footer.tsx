@@ -1,16 +1,17 @@
-import React from 'react'
-import { FooterLinks } from './constants/footer-list'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-
-import { Socials } from './constants/socials'
 import { ArrowRight } from 'lucide-react'
-import Logo from '../logo'
+import React from 'react'
+
+
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+
+import { FooterLinks } from './constants/footer-list'
+import { Socials } from './constants/socials'
 import FooterBanner from './footer-banner'
 
-const Footer = () => {
+export default function Footer() {
     return (
-        <div className="flex flex-col bg-primary-100 text-white dark:bg-black-900 dark:text-primary-100">
+        <footer className="flex flex-col bg-primary-100 text-white dark:bg-black-900 dark:text-primary-100">
             <div className="flex flex-col gap-10 p-10 lg:flex-row lg:gap-32">
                 {FooterLinks.sections.map((section) => (
                     <div className="flex flex-col gap-5" key={section.title}>
@@ -42,7 +43,7 @@ const Footer = () => {
                     ))}
                 </div>
 
-                <section className="flex flex-col gap-5">
+                <div className="flex flex-col gap-5">
                     <p className="text-xl font-semibold text-primary-600">
                         Stay in touch
                     </p>
@@ -62,12 +63,10 @@ const Footer = () => {
                     <p className="flex flex-col gap-3 text-sm text-primary-500">
                         Sign up for free discount vouchers*
                     </p>
-                </section>
+                </div>
             </div>
 
             <FooterBanner />
-        </div>
+        </footer>
     )
 }
-
-export default Footer

@@ -1,15 +1,16 @@
 'use client'
 
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useState, useEffect } from 'react'
+
 import {
     Accordion,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
 } from '@/components/ui/accordion'
-import { useState, useEffect } from 'react'
 import { Input } from '@/components/ui/input'
 import { FilterQuery } from '@/constants/filter'
-import { useRouter, useSearchParams } from 'next/navigation'
 import { formUrlQuery, removeKeysFromUrlQuery } from '@/lib/url'
 export const PricingAccordion = () => {
     const router = useRouter()

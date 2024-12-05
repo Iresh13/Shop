@@ -1,14 +1,15 @@
 'use client'
 
+import { useAtom } from 'jotai/react'
+import React from 'react'
+
 import { CartActions } from '@/atoms/cart/action'
 import { cartReducerAtom } from '@/atoms/cart/reducer'
 import { Button } from '@/components/ui/button'
 import { Product } from '@/schemas/product-schema'
-import { useAtom } from 'jotai/react'
-import React from 'react'
 
 const AddToCartButton = ({ product }: { product: Product }) => {
-    const [_, dispatch] = useAtom(cartReducerAtom)
+    const [, dispatch] = useAtom(cartReducerAtom)
 
     const addToCart = (product: Product) => {
         const data = { ...product, quantity: 1 }

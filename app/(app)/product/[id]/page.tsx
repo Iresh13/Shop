@@ -1,4 +1,5 @@
 import React from 'react'
+
 import ProductDetails from './component/product-details'
 
 export default async function ProductView({

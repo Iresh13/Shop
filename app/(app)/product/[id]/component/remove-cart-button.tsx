@@ -1,13 +1,14 @@
 'use client'
 
-import React from 'react'
 import { useAtom } from 'jotai/react'
-import { Button } from '@/components/ui/button'
+import React from 'react'
+
 import { CartActions } from '@/atoms/cart/action'
-import { Product } from '@/schemas/product-schema'
 import { cartReducerAtom } from '@/atoms/cart/reducer'
-const RemoveCardButton = ({ product }: { product: Product }) => {
-    const [_, dispatch] = useAtom(cartReducerAtom)
+import { Button } from '@/components/ui/button'
+import { Product } from '@/schemas/product-schema'
+export const RemoveCardButton = ({ product }: { product: Product }) => {
+    const [, dispatch] = useAtom(cartReducerAtom)
 
     const removeCart = (product: Product) => {
         const data = { ...product, quantity: 1 }
@@ -28,5 +29,3 @@ const RemoveCardButton = ({ product }: { product: Product }) => {
         </Button>
     )
 }
-
-export default RemoveCardButton

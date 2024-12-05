@@ -1,8 +1,8 @@
 import { Fragment } from 'react'
-import { Product } from '@/schemas/product-schema'
-import ProductCard from '@/components/cards/product-card'
-import { Pagination } from '@/components/ui/pagination'
+
+import { ProductCard } from '@/components/cards/product-card'
 import { PaginationComponent } from '@/components/pagination/pagination'
+import { Product } from '@/schemas/product-schema'
 
 export default async function Products({
     searchParams,

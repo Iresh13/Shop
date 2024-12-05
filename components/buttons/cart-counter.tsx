@@ -1,12 +1,13 @@
 'use client'
 
-import React from 'react'
 import { useAtom } from 'jotai/react'
+import React from 'react'
+
+import { CartActions } from '@/atoms/cart/action'
+import { cartReducerAtom } from '@/atoms/cart/reducer'
 import { Button } from '@/components/ui/button'
 import { Product } from '@/schemas/product-schema'
-import { cartReducerAtom } from '@/atoms/cart/reducer'
-import { CartActions } from '@/atoms/cart/action'
-const CartCounter = ({ product }: { product: Product }) => {
+export const CartCounter = ({ product }: { product: Product }) => {
     const [carts, dispatch] = useAtom(cartReducerAtom)
 
     const selectedProduct = carts.find((c) => c.id === product.id)
@@ -68,5 +69,3 @@ const CartCounter = ({ product }: { product: Product }) => {
         </div>
     )
 }
-
-export default CartCounter

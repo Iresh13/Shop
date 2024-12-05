@@ -11,8 +11,7 @@ export default async function ProductView({
 }) {
     const { id } = await params
 
-    const res = await http.get('http://localhost:3000/api/product/' + id)
-    const { data: product } = await res.json()
+    const { data } = await http.get('http://localhost:3000/api/product/' + id)
 
-    return <ProductDetails product={product} />
+    return <ProductDetails product={data} />
 }

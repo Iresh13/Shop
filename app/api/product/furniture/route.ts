@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
             price_max: Number(searchParams.get('price_max') || 0),
         }
 
-        const validatedFilters = await FilterSchema.safeParse(query)
+        const validatedFilters = await FilterSchema.partial().safeParse(query)
 
         if (!validatedFilters.success) {
             throw new ValidationError(

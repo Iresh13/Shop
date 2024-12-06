@@ -13,7 +13,7 @@ export async function POST(
 ): Promise<NextResponse<Product[]> | undefined> {
     const body = await request.json()
 
-    const validatedFilters = await FilterSchema.safeParse(body)
+    const validatedFilters = await FilterSchema.partial().safeParse(body)
 
     if (!validatedFilters.success) {
         throw new ValidationError(validatedFilters.error.flatten().fieldErrors)

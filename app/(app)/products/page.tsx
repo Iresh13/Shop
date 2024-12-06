@@ -14,9 +14,7 @@ export default async function Products({
 
     const offset = (Number(page) - 1) * 12
 
-    const products = await http.get(
-        `http://localhost:3000/api/product?limit=12&offset=${offset}`
-    )
+    const products = await http.get(`product?limit=12&offset=${offset}`)
 
     return (
         <div className="flex flex-col gap-10">

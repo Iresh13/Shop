@@ -1,60 +1,67 @@
-import { NextResponse } from "next/server";
-import { ZodError } from "zod";
+import { NextResponse } from 'next/server'
+import { ZodError } from 'zod'
 
-import { ResponseType, StatusCode } from "@/constants/status-code";
+import { ResponseType, StatusCode } from '@/constants/status-code'
 
-import { RequestError, ValidationError } from "../http-error";
+import { RequestError, ValidationError } from '../http-error'
 
 const formatErrorMessages = (
-  responseType: ResponseType,
-  status: number,
-  message: string,
-  errors?: Record<string, string[]> | undefined
+    responseType: ResponseType,
+    status: number,
+    message: string,
+    errors?: Record<string, string[]> | undefined
 ) => {
-  const errorResponse = {
-    success: false,
-    error: {
-      message,
-      details: errors,
-    },
-  };
+    const errorResponse = {
+        success: false,
+        error: {
+            message,
+            details: errors,
+        },
+    }
 
-  if (responseType === "api")
-    return NextResponse.json(errorResponse, { status: StatusCode.error });
+    if (responseType === 'api')
+        return NextResponse.json(errorResponse, { status: StatusCode.error })
 
-  return { status, ...errorResponse };
-};
+    return { status, ...errorResponse }
+}
 
-export const handleError = (error: unknown, responseType: ResponseType) => {
-  if (error instanceof RequestError) {
+export const handleError = (
+    error: unknown,
+    responseType: ResponseType = 'server'
+) => {
+    if (error instanceof RequestError) {
+        return formatErrorMessages(
+            responseType,
+            error.statusCode,
+            error.message,
+            error.errors
+        )
+    }
+
+    if (error instanceof ZodError) {
+        const validationError = new ValidationError(
+            error.flatten().fieldErrors as Record<string, string[]>
+        )
+
+        return formatErrorMessages(
+            responseType,
+            validationError.statusCode,
+            validationError.message,
+            validationError.errors
+        )
+    }
+
+    if (error instanceof Error) {
+        return formatErrorMessages(
+            responseType,
+            StatusCode.error,
+            error.message
+        )
+    }
+
     return formatErrorMessages(
-      responseType,
-      error.statusCode,
-      error.message,
-      error.errors
-    );
-  }
-
-  if (error instanceof ZodError) {
-    const validationError = new ValidationError(
-      error.flatten().fieldErrors as Record<string, string[]>
-    );
-
-    return formatErrorMessages(
-      responseType,
-      validationError.statusCode,
-      validationError.message,
-      validationError.errors
-    );
-  }
-
-  if (error instanceof Error) {
-    return formatErrorMessages(responseType, StatusCode.error, error.message);
-  }
-
-  return formatErrorMessages(
-    responseType,
-    StatusCode.error,
-    "An unexpected error occurred"
-  );
-};
+        responseType,
+        StatusCode.error,
+        'An unexpected error occurred'
+    )
+}

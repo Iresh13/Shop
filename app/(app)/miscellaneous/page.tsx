@@ -20,17 +20,14 @@ export default async function Miscellaneous({
         price_max = '',
     } = await searchParams
 
-    const miscellaneousProducts = await http.post(
-        'http://localhost:3000/api/filter-products',
-        {
-            limit: 9,
-            title: title,
-            categoryId: 5,
-            price_max: Number(price_max),
-            price_min: Number(price_min),
-            offset: (Number(page) - 1) * 9,
-        }
-    )
+    const miscellaneousProducts = await http.post('filter-products', {
+        limit: 9,
+        title: title,
+        categoryId: 5,
+        price_max: Number(price_max),
+        price_min: Number(price_min),
+        offset: (Number(page) - 1) * 9,
+    })
 
     return (
         <div className="flex flex-1 flex-col gap-10">

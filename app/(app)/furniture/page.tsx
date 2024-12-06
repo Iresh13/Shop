@@ -20,17 +20,14 @@ export default async function Furniture({
         price_max = '',
     } = await searchParams
 
-    const { data } = await http.post(
-        'http://localhost:3000/api/filter-products',
-        {
-            title: title,
-            limit: 9,
-            categoryId: 3,
-            price_max: Number(price_max),
-            price_min: Number(price_min),
-            offset: (Number(page) - 1) * 9,
-        }
-    )
+    const { data } = await http.post('filter-products', {
+        title: title,
+        limit: 9,
+        categoryId: 3,
+        price_max: Number(price_max),
+        price_min: Number(price_min),
+        offset: (Number(page) - 1) * 9,
+    })
 
     //Other approach
     // const {data} = await http.get(

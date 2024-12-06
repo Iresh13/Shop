@@ -11,8 +11,8 @@ import { Category } from '@/schemas/category-schema'
 import { Product } from '@/schemas/product-schema'
 
 export default async function Home() {
-    const products = await http.get('http://localhost:3000/api/product')
-    const categories = await http.get('http://localhost:3000/api/categories')
+    const products = await http.get('product')
+    const categories = await http.get('categories')
 
     return (
         <Fragment>

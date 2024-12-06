@@ -18,15 +18,12 @@ export default async function Categories({ searchParams }: SearchParamsProps) {
         categoryId = '',
     } = await searchParams
 
-    const filteredProducts = await http.post(
-        'http://localhost:3000/api/filter-products',
-        {
-            title: title,
-            price_max: Number(price_max),
-            price_min: Number(price_min),
-            categoryId: Number(categoryId),
-        }
-    )
+    const filteredProducts = await http.post('filter-products', {
+        title: title,
+        price_max: Number(price_max),
+        price_min: Number(price_min),
+        categoryId: Number(categoryId),
+    })
 
     return (
         <div className="flex flex-col items-center justify-center gap-6">

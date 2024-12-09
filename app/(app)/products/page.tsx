@@ -1,14 +1,23 @@
 import { Fragment } from 'react'
+
+import { ProductCard } from '@/components/cards/product-card'
+import { PaginationComponent } from '@/components/pagination/pagination'
+import * as http from '@/lib/handlers/http'
 import { Product } from '@/schemas/product-schema'
-import ProductCard from '@/components/cards/product-card'
 
-export default async function Products() {
-    const res = await fetch('http://localhost:3000/api/product')
+export default async function Products({
+    searchParams,
+}: {
+    searchParams: Promise<{ page: string }>
+}) {
+    const { page = '1' } = await searchParams
 
-    const products = await res.json()
+    const offset = (Number(page) - 1) * 12
+
+    const products = await http.get(`product?limit=12&offset=${offset}`)
 
     return (
-        <Fragment>
+        <div className="flex flex-col gap-10">
             <section className="flex flex-col items-center justify-center gap-6">
                 <h2 className="p-10 text-center text-4xl font-medium uppercase text-dark-800 opacity-100 dark:text-light-200">
                     Available Products
@@ -19,19 +28,17 @@ export default async function Products() {
                         products.map((product: Product, index: number) => {
                             return (
                                 <Fragment key={index}>
-                                    {!product.title
-                                        .toLowerCase()
-                                        .includes('new') &&
-                                        !product.title
-                                            .toLowerCase()
-                                            .includes('test') && (
-                                            <ProductCard product={product} />
-                                        )}
+                                    <ProductCard product={product} />
                                 </Fragment>
                             )
                         })}
                 </div>
             </section>
-        </Fragment>
+
+            <PaginationComponent
+                maxVisiblePages={3}
+                currentPage={Number(page)}
+            />
+        </div>
     )
 }

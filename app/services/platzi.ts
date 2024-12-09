@@ -1,17 +1,23 @@
+import axios from 'axios'
+import { ZodSchema } from 'zod'
+
 import { handleError } from '@/lib/handlers/error'
-import axios, { AxiosResponse } from 'axios'
-import { ZodType } from 'zod'
 
 const api = axios.create({
     baseURL: process.env.NEXT_PUBLIC_PLATZI_URL,
 })
 
-export const getData = async (endpoint: string, schema?: ZodType<T>) => {
-    try {
-        const response = await api.get(endpoint)
+interface getDataProps {
+    endpoint: string
+    schema?: ZodSchema
+}
 
-        if (schema) {
-            return schema.safeParse(response.data)
+export const getData = async (params: getDataProps) => {
+    try {
+        const response = await api.get(params.endpoint)
+
+        if (params.schema) {
+            return params.schema.safeParse(response.data)
         }
 
         return response.data

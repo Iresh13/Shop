@@ -1,10 +1,11 @@
 'use client'
 
-import { Product } from '@/schemas/product-schema'
-import ProductCard from '@/components/cards/product-card'
 import { useAtomValue } from 'jotai/react'
+
 import { favoriteReducerAtom } from '@/atoms/favorite/reducers'
-import EmptyList from '@/components/banner/empty-list'
+import { EmptyList } from '@/components/banner/empty-list'
+import { ProductCard } from '@/components/cards/product-card'
+import { Product } from '@/schemas/product-schema'
 
 export default function FavoriteCard() {
     const favorites = useAtomValue(favoriteReducerAtom)

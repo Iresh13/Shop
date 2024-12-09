@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+
 import FavoriteCard from './components/favorites'
 
 export default function Favorites() {

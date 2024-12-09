@@ -1,9 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 import { usePathname, useRouter } from 'next/navigation'
+
 import PageLayout from '@/components/layout/page-layout'
+import { Button } from '@/components/ui/button'
 
 export default function GlobalError({ error }: { error: Error }) {
     const router = useRouter()
@@ -15,7 +16,7 @@ export default function GlobalError({ error }: { error: Error }) {
         <PageLayout>
             <div className="flex flex-col items-center justify-center gap-7">
                 <h1 className="text-4xl font-semibold">{error.name}</h1>
-                <p className="text-medium text-center font-medium text-primary-500">
+                <p className="text-center text-lg font-medium text-primary-500">
                     {error.message}
                 </p>
             </div>

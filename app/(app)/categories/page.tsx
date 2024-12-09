@@ -1,14 +1,16 @@
-import EmptyList from '@/components/banner/empty-list'
-import ProductCard from '@/components/cards/product-card'
+import React from 'react'
+
+import { EmptyList } from '@/components/banner/empty-list'
+import { ProductCard } from '@/components/cards/product-card'
+import * as http from '@/lib/handlers/http'
 import { Product } from '@/schemas/product-schema'
 import { Filter } from '@/types/filter'
-import React from 'react'
 
 export interface SearchParamsProps {
     searchParams: Promise<Filter>
 }
 
-const Viewer = async ({ searchParams }: SearchParamsProps) => {
+export default async function Categories({ searchParams }: SearchParamsProps) {
     const {
         title = '',
         price_min = '',
@@ -16,23 +18,12 @@ const Viewer = async ({ searchParams }: SearchParamsProps) => {
         categoryId = '',
     } = await searchParams
 
-    const filteredResponse = await fetch(
-        'http://localhost:3000/api/filter-products',
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                title: title,
-                price_max: Number(price_max),
-                price_min: Number(price_min),
-                categoryId: Number(categoryId),
-            }),
-        }
-    )
-
-    const filteredProducts = await filteredResponse.json()
+    const filteredProducts = await http.post('filter-products', {
+        title: title,
+        price_max: Number(price_max),
+        price_min: Number(price_min),
+        categoryId: Number(categoryId),
+    })
 
     return (
         <div className="flex flex-col items-center justify-center gap-6">
@@ -54,5 +45,3 @@ const Viewer = async ({ searchParams }: SearchParamsProps) => {
         </div>
     )
 }
-
-export default Viewer

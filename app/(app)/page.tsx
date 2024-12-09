@@ -1,19 +1,18 @@
-import { Fragment } from 'react'
-import { Product } from '@/schemas/product-schema'
-import { Category } from '@/schemas/category-schema'
-import BannerCard from '@/components/banner/banner-card'
-import ProductCard from '@/components/cards/product-card'
-import CategoryCard from '@/components/cards/category-card'
 import Link from 'next/link'
-import { Routes } from '@/constants/routes'
+import { Fragment } from 'react'
+
+import { BannerCard } from '@/components/banner/banner-card'
+import { CategoryCard } from '@/components/cards/category-card'
+import { ProductCard } from '@/components/cards/product-card'
 import { Button } from '@/components/ui/button'
+import { Routes } from '@/constants/routes'
+import * as http from '@/lib/handlers/http'
+import { Category } from '@/schemas/category-schema'
+import { Product } from '@/schemas/product-schema'
 
 export default async function Home() {
-    const res = await fetch('http://localhost:3000/api/product')
-    const category = await fetch('http://localhost:3000/api/categories')
-
-    const products = await res.json()
-    const categories = await category.json()
+    const products = await http.get('product')
+    const categories = await http.get('categories')
 
     return (
         <Fragment>
@@ -28,15 +27,12 @@ export default async function Home() {
                         categories.map((category: Category, index: number) => {
                             return (
                                 <Fragment key={index}>
-                                    {index <= 4 &&
-                                        category.image &&
-                                        category.name.toLowerCase() !==
-                                            'new category' && (
-                                            <CategoryCard
-                                                category={category}
-                                                key={index}
-                                            />
-                                        )}
+                                    {index <= 4 && (
+                                        <CategoryCard
+                                            category={category}
+                                            key={index}
+                                        />
+                                    )}
                                 </Fragment>
                             )
                         })}
@@ -52,15 +48,9 @@ export default async function Home() {
                         products.map((product: Product, index: number) => {
                             return (
                                 <Fragment key={index}>
-                                    {index <= 8 &&
-                                        !product.title
-                                            .toLowerCase()
-                                            .includes('new') &&
-                                        !product.title
-                                            .toLowerCase()
-                                            .includes('test') && (
-                                            <ProductCard product={product} />
-                                        )}
+                                    {index <= 8 && (
+                                        <ProductCard product={product} />
+                                    )}
                                 </Fragment>
                             )
                         })}

@@ -1,9 +1,10 @@
+import Link from 'next/link'
+import React from 'react'
+
 import { Routes } from '@/constants/routes'
 import { Category } from '@/schemas/category-schema'
-import Link from 'next/link'
-import React, { Fragment } from 'react'
 
-const CategoryCard = ({ category }: { category: Category }) => {
+export const CategoryCard = ({ category }: { category: Category }) => {
     return (
         <Link
             href={Routes.CATEGORY(String(category.id))}
@@ -30,5 +31,3 @@ const CategoryCard = ({ category }: { category: Category }) => {
         </Link>
     )
 }
-
-export default CategoryCard

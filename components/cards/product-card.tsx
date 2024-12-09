@@ -4,6 +4,8 @@ import React, { Fragment } from 'react'
 import { Button } from '../ui/button'
 import { Routes } from '@/constants/routes'
 import Link from 'next/link'
+import { Heart } from 'lucide-react'
+import FavButton from '../buttons/fav-button'
 
 const ProductCard = ({ product }: { product: Product }) => {
     return (
@@ -35,6 +37,10 @@ const ProductCard = ({ product }: { product: Product }) => {
                                 </section>
 
                                 <section className="text-primary-foreground text-dark800 rotate-y-180 backface-hidden absolute flex h-full w-full flex-col justify-between gap-5 rounded-xl bg-gradient-to-r from-primary-200 to-primary-300 p-6 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                                    <section className="absolute right-5 top-5 flex">
+                                        <FavButton product={product} />
+                                    </section>
+
                                     <div className="flex flex-col gap-5">
                                         <h2 className="text-2xl font-bold text-dark-950">
                                             {product.title.toUpperCase()}

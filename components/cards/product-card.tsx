@@ -2,6 +2,10 @@ import { Product } from '@/schemas/product-schema'
 import Image from 'next/image'
 import React, { Fragment } from 'react'
 import { Button } from '../ui/button'
+import { Routes } from '@/constants/routes'
+import Link from 'next/link'
+import { Heart } from 'lucide-react'
+import FavButton from '../buttons/fav-button'
 
 const ProductCard = ({ product }: { product: Product }) => {
     return (
@@ -33,6 +37,10 @@ const ProductCard = ({ product }: { product: Product }) => {
                                 </section>
 
                                 <section className="text-primary-foreground text-dark800 rotate-y-180 backface-hidden absolute flex h-full w-full flex-col justify-between gap-5 rounded-xl bg-gradient-to-r from-primary-200 to-primary-300 p-6 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                                    <section className="absolute right-5 top-5 flex">
+                                        <FavButton product={product} />
+                                    </section>
+
                                     <div className="flex flex-col gap-5">
                                         <h2 className="text-2xl font-bold text-dark-950">
                                             {product.title.toUpperCase()}
@@ -45,9 +53,16 @@ const ProductCard = ({ product }: { product: Product }) => {
                                         <h4 className="text-xl font-semibold text-dark-700">
                                             ${product.price}
                                         </h4>
-                                        <Button className="rounded-md bg-primary-700 px-8 py-5 text-xl text-light-50 hover:bg-primary-600">
-                                            Buy Now
-                                        </Button>
+
+                                        <Link
+                                            href={Routes.PRODUCT(
+                                                String(product.id)
+                                            )}
+                                        >
+                                            <Button className="rounded-md bg-primary-700 px-8 py-5 text-xl text-light-50 hover:bg-primary-600">
+                                                Buy Now
+                                            </Button>
+                                        </Link>
                                     </div>
                                 </section>
                             </div>

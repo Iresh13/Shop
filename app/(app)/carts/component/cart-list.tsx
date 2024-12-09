@@ -1,12 +1,12 @@
 'use client'
 
 import { useAtomValue } from 'jotai/react'
-import { cartReducerAtom } from '@/atoms/cart/reducer'
 
-import CartCard from '@/components/cards/cart-card'
+import { cartReducerAtom } from '@/atoms/cart/reducer'
 import { Cart } from '@/atoms/cart/schema'
-import CheckoutButton from '@/components/buttons/checkout'
-import EmptyList from '@/components/banner/empty-list'
+import { EmptyList } from '@/components/banner/empty-list'
+import { CheckoutButton } from '@/components/buttons/checkout'
+import { CartCard } from '@/components/cards/cart-card'
 
 export default function CartList() {
     const carts = useAtomValue(cartReducerAtom)

@@ -1,21 +1,25 @@
+import { NextRequest, NextResponse } from 'next/server'
+
 import { getData } from '@/app/services/platzi'
 import { handleError } from '@/lib/handlers/error'
 import { NotFoundError } from '@/lib/http-error'
 import { Product, ProductSchema } from '@/schemas/product-schema'
-import { NextResponse } from 'next/server'
 
 export async function GET(
-    _: Request,
+    _: NextRequest,
     { params }: { params: Promise<{ id: string }> }
 ): Promise<NextResponse<Product> | undefined> {
-    const { id } = await params
-
-    if (!id) {
-        throw new NotFoundError('Product')
-    }
-
     try {
-        const data = await getData(`/products/${id}`, ProductSchema)
+        const { id } = await params
+
+        if (!id) {
+            throw new NotFoundError('Product')
+        }
+
+        const data = await getData({
+            endpoint: `/products/${id}`,
+            schema: ProductSchema,
+        })
 
         if (data) {
             return NextResponse.json(data)

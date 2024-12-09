@@ -1,15 +1,17 @@
 'use client'
 
-import { BookHeartIcon, Check, Heart } from 'lucide-react'
-import React from 'react'
-import { Button } from '../ui/button'
-import { Product } from '@/schemas/product-schema'
-import { favoriteReducerAtom } from '@/atoms/favorite/reducers'
 import { useAtom } from 'jotai/react'
-import { FavoriteActions } from '@/atoms/favorite/action'
-import { cn } from '@/lib/utils'
+import { Check, Heart } from 'lucide-react'
+import React from 'react'
 
-const FavButton = ({
+import { FavoriteActions } from '@/atoms/favorite/action'
+import { favoriteReducerAtom } from '@/atoms/favorite/reducers'
+import { cn } from '@/lib/utils'
+import { Product } from '@/schemas/product-schema'
+
+import { Button } from '../ui/button'
+
+export const FavButton = ({
     product,
     styles,
 }: {
@@ -48,5 +50,3 @@ const FavButton = ({
         </Button>
     )
 }
-
-export default FavButton

@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import CartList from './component/cart-list'
 
 export default function Favorites() {

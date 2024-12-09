@@ -1,18 +1,19 @@
+import { NextRequest, NextResponse } from 'next/server'
+import { z } from 'zod'
+
 import { getData } from '@/app/services/platzi'
 import { handleError } from '@/lib/handlers/error'
 import { NotFoundError, ValidationError } from '@/lib/http-error'
 import { convertObjectToQueryParams } from '@/lib/utils'
 import { FilterSchema } from '@/schemas/filter-schema'
 import { Product, ProductSchema } from '@/schemas/product-schema'
-import { NextResponse } from 'next/server'
-import { z } from 'zod'
 
 export async function POST(
-    request: Request
+    request: NextRequest
 ): Promise<NextResponse<Product[]> | undefined> {
     const body = await request.json()
 
-    const validatedFilters = await FilterSchema.safeParse(body)
+    const validatedFilters = await FilterSchema.partial().safeParse(body)
 
     if (!validatedFilters.success) {
         throw new ValidationError(validatedFilters.error.flatten().fieldErrors)
@@ -21,10 +22,10 @@ export async function POST(
     const queryParams = convertObjectToQueryParams(validatedFilters.data)
 
     try {
-        const response = await getData(
-            `/products/?${queryParams}`,
-            z.array(ProductSchema)
-        )
+        const response = await getData({
+            endpoint: `/products/?${queryParams}`,
+            schema: z.array(ProductSchema),
+        })
 
         if (response) {
             return NextResponse.json(response)

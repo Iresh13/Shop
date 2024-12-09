@@ -1,14 +1,15 @@
-import PageLayout from '@/components/layout/page-layout'
-import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import React from 'react'
+
+import PageLayout from '@/components/layout/page-layout'
+import { Button } from '@/components/ui/button'
 
 const NotFound = () => {
     return (
         <PageLayout>
             <div className="flex flex-col items-center justify-center gap-7">
                 <h1 className="text-4xl font-semibold">Page not found</h1>
-                <p className="text-medium text-center font-medium text-primary-500">
+                <p className="text-center text-lg font-medium text-primary-500">
                     We could not find the page you are looking for.
                 </p>
             </div>

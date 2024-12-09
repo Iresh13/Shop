@@ -1,13 +1,15 @@
 'use client'
 
+import { useAtomValue } from 'jotai/react'
 import Image from 'next/image'
 import React, { useState } from 'react'
-import { useAtomValue } from 'jotai/react'
-import AddToCartButton from './add-cart-button'
-import { Product } from '@/schemas/product-schema'
+
 import { cartReducerAtom } from '@/atoms/cart/reducer'
-import FavButton from '@/components/buttons/fav-button'
-import CartCounter from '@/components/buttons/cart-counter'
+import { CartCounter } from '@/components/buttons/cart-counter'
+import { FavButton } from '@/components/buttons/fav-button'
+import { Product } from '@/schemas/product-schema'
+
+import AddToCartButton from './add-cart-button'
 
 export default function ProductDetails({ product }: { product: Product }) {
     const [selectedImage, setSelectedImage] = useState<number>(0)
@@ -27,7 +29,7 @@ export default function ProductDetails({ product }: { product: Product }) {
                         alt="product-image"
                         height={400}
                         width={400}
-                        className="rounded-lg object-cover hover:scale-110 lg:h-full lg:w-full"
+                        className="rounded-lg object-cover hover:scale-110 lg:size-full"
                     />
                 ))}
             </div>
@@ -38,7 +40,7 @@ export default function ProductDetails({ product }: { product: Product }) {
                     alt="product-image"
                     height={600}
                     width={600}
-                    className="h-full w-full rounded-lg"
+                    className="size-full rounded-lg"
                 />
 
                 <section className="flex flex-col gap-10 rounded-lg bg-light-50 p-5">
@@ -52,14 +54,14 @@ export default function ProductDetails({ product }: { product: Product }) {
 
                     <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
                         <div className="flex flex-col gap-2">
-                            <p className="text-md font-light text-dark-400">
+                            <p className="font-light text-dark-400">
                                 Price:{' '}
                                 <span className="text-xl font-medium text-dark-400">
                                     ${product?.price}
                                 </span>
                             </p>
 
-                            <p className="text-md font-light text-dark-400">
+                            <p className="font-light text-dark-400">
                                 Category:{' '}
                                 <span className="text-xl font-medium text-dark-400">
                                     {product?.category.name}

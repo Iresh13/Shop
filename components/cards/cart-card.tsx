@@ -1,11 +1,13 @@
-import React from 'react'
 import Image from 'next/image'
-import { Cart } from '@/atoms/cart/schema'
-import FavButton from '../buttons/fav-button'
-import CartCounter from '../buttons/cart-counter'
-import RemoveCardButton from '@/app/(app)/product/[id]/component/remove-cart-button'
+import React from 'react'
 
-const CartCard = ({ product }: { product: Cart }) => {
+import { RemoveCardButton } from '@/app/(app)/product/[id]/component/remove-cart-button'
+import { Cart } from '@/atoms/cart/schema'
+
+import { CartCounter } from '../buttons/cart-counter'
+import { FavButton } from '../buttons/fav-button'
+
+export const CartCard = ({ product }: { product: Cart }) => {
     return (
         <div
             className="flex flex-col items-center gap-4 rounded-lg bg-primary-200 p-4 lg:flex-row"
@@ -26,21 +28,21 @@ const CartCard = ({ product }: { product: Cart }) => {
 
                 <div className="flex w-full flex-col justify-between gap-5">
                     <div className="flex flex-col gap-2">
-                        <p className="text-md font-light text-dark-400">
+                        <p className="font-light text-dark-400">
                             Price:{' '}
                             <span className="text-xl font-medium text-dark-400">
                                 ${product?.price}
                             </span>
                         </p>
 
-                        <p className="text-md font-light text-dark-400">
+                        <p className="font-light text-dark-400">
                             Category:{' '}
                             <span className="text-xl font-medium text-dark-400">
                                 {product?.category.name}
                             </span>
                         </p>
 
-                        <p className="text-md font-light text-dark-400">
+                        <p className="font-light text-dark-400">
                             Total:{' '}
                             <span className="text-xl font-medium text-dark-400">
                                 ${product.price * product.quantity}
@@ -64,5 +66,3 @@ const CartCard = ({ product }: { product: Cart }) => {
         </div>
     )
 }
-
-export default CartCard

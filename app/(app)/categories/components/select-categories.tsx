@@ -1,5 +1,8 @@
 'use client'
 
+import { useRouter, useSearchParams } from 'next/navigation'
+import React from 'react'
+
 import {
     Select,
     SelectContent,
@@ -7,20 +10,13 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
-import { formUrlQuery } from '@/lib/url'
 import { FilterQuery } from '@/constants/filter'
+import { formUrlQuery } from '@/lib/url'
 import { Category } from '@/schemas/category-schema'
-import { useRouter, useSearchParams } from 'next/navigation'
-
-import React from 'react'
 
 const SelectCategories = ({ categories }: { categories: Category[] }) => {
     const searchParams = useSearchParams()
     const router = useRouter()
-
-    const id = searchParams.get(FilterQuery.CATEGORY_ID) || 1
-
-    console.log(id)
 
     const handleChange = (id: string) => {
         const newUrl = formUrlQuery({

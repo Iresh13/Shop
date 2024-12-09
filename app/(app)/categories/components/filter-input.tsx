@@ -1,14 +1,16 @@
 'use client'
 
 import { Search } from 'lucide-react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
+
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { FilterQuery } from '@/constants/filter'
-import React, { useEffect, useState } from 'react'
 import { formUrlQuery, removeKeysFromUrlQuery } from '@/lib/url'
-import { useRouter, useSearchParams } from 'next/navigation'
 
-const FilterInput = () => {
+
+export const FilterInput = () => {
     const router = useRouter()
     const searchParams = useSearchParams()
     const query = searchParams.get(FilterQuery.TITLE) || ''
@@ -44,7 +46,7 @@ const FilterInput = () => {
             </Label>
 
             <div className="flex w-full items-center gap-2 rounded-xl border-2 border-dark-600 px-2 py-1 shadow-sm dark:border-light-300">
-                <Search className="h-6 w-6 text-primary-600" />
+                <Search className="size-6 text-primary-600" />
                 <Input
                     type="text"
                     value={searchQuery}
@@ -56,5 +58,3 @@ const FilterInput = () => {
         </div>
     )
 }
-
-export default FilterInput

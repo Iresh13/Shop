@@ -1,46 +1,72 @@
-import React from "react";
-import { FooterLinks } from "./constants/footer-list";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { ArrowRight } from 'lucide-react'
+import React from 'react'
 
-const Footer = () => {
-  return (
-    <div className="footer-gradient text-white dark:text-primary-100 flex flex-col">
-      <div className="flex gap-10 p-10 flex-col lg:flex-row">
-        {FooterLinks.sections.map((section) => (
-          <div className="flex flex-col gap-5" key={section.title}>
-            <h1 className="text-xl font-bold text-white dark:text-primary">
-              {section.title}
-            </h1>
-            {section.links.map((link) => (
-              <li className="flex flex-col gap-3" key={link.url}>
-                {link.name}
-              </li>
-            ))}
-          </div>
-        ))}
 
-        <section className="flex gap-5">
-          <Input
-            placeholder="Search..."
-            className="no-focus shadow-none text-lg placeholder"
-          />
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 
-          <Button className="px-4 py-3 bg-white text-lg rounded-lg">
-            Shop Now
-          </Button>
-        </section>
-      </div>
+import { FooterLinks } from './constants/footer-list'
+import { Socials } from './constants/socials'
+import FooterBanner from './footer-banner'
 
-      <div className="items-center justify-center flex flex-row gap-5 bg-white p-5">
-        <Image alt="image-logo" src="/icon.png" height={50} width={50} />
-        <h1 className="text-3xl font-bold text-primary dark:text-white">
-          ShopCo
-        </h1>
-      </div>
-    </div>
-  );
-};
+export default function Footer() {
+    return (
+        <footer className="flex flex-col bg-primary-100 text-white dark:bg-black-900 dark:text-primary-100">
+            <div className="flex flex-col gap-10 p-10 lg:flex-row lg:gap-32">
+                {FooterLinks.sections.map((section) => (
+                    <div className="flex flex-col gap-5" key={section.title}>
+                        <h2 className="text-xl font-semibold text-primary-600">
+                            {section.title}
+                        </h2>
+                        {section.links.map((link) => (
+                            <li
+                                className="flex flex-col gap-3 text-sm text-primary-500"
+                                key={link.url}
+                            >
+                                {link.name}
+                            </li>
+                        ))}
+                    </div>
+                ))}
 
-export default Footer;
+                <div className="flex flex-col gap-5">
+                    <h1 className="text-xl font-semibold text-primary-600">
+                        {Socials.section}
+                    </h1>
+                    {Socials.links.map((link) => (
+                        <li
+                            className="flex flex-col gap-3 text-sm text-primary-500"
+                            key={link.url}
+                        >
+                            {link.name}
+                        </li>
+                    ))}
+                </div>
+
+                <div className="flex flex-col gap-5">
+                    <p className="text-xl font-semibold text-primary-600">
+                        Stay in touch
+                    </p>
+
+                    <section className="flex flex-col gap-5 xl:flex-row">
+                        <Input
+                            placeholder="Email"
+                            className="no-focus placeholder min-h-12 min-w-full border-2 border-dark-600 text-lg shadow-none dark:border-light-300"
+                        />
+
+                        <Button className="min-h-12 rounded-lg bg-dark-700 px-4 py-3 text-lg hover:bg-primary-600">
+                            Subscribe
+                            <ArrowRight />
+                        </Button>
+                    </section>
+
+                    <p className="flex flex-col gap-3 text-sm text-primary-500">
+                        Sign up for free discount vouchers*
+                    </p>
+                </div>
+            </div>
+
+            <FooterBanner />
+        </footer>
+    )
+}

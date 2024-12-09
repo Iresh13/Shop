@@ -1,38 +1,37 @@
-import { Home, ShoppingCart } from "lucide-react";
-import { Routes } from "./routes";
-import { ReactElement } from "react";
+import { Home, Monitor, Shirt, ShoppingCart, Table } from 'lucide-react'
+import { Routes } from './routes'
+import { ReactElement } from 'react'
 
 export interface NavLinkType {
-  title: string;
-  link: string;
-  icon: ReactElement;
+    title: string
+    link: string
+    icon: ReactElement
 }
 
 export const NavLinks: NavLinkType[] = [
-  {
-    title: "Home",
-    link: Routes.HOME,
-    icon: <Home size={28} />,
-  },
-
-  {
-    title: "Men",
-    link: Routes.HOME,
-    icon: <Home size={28} />,
-  },
-  {
-    title: "Women",
-    link: Routes.HOME,
-    icon: <Home size={28} />,
-  },
-  {
-    title: "Kids",
-    link: Routes.HOME,
-    icon: <Home size={28} />,
-  },
-  {
-    title: "Sports",
-    link: Routes.HOME,
-    icon: <Home size={28} />,
-  },
-];
+    {
+        title: 'Clothes',
+        link: Routes.CLOTHES,
+        icon: <Shirt size={28} />,
+    },
+    {
+        title: 'Electronics',
+        link: Routes.ELECTRONICS,
+        icon: <Monitor size={28} />,
+    },
+    {
+        title: 'Furniture',
+        link: Routes.FURNITURE,
+        icon: <Table size={28} />,
+    },
+    {
+        title: 'Shoes',
+        link: Routes.SHOES,
+        icon: <Home size={28} />,
+    },
+    {
+        title: 'Miscellaneous',
+        link: Routes.MISCELLANEOUS,
+        icon: <Home size={28} />,
+    },
+]

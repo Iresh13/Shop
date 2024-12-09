@@ -2,29 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 .no-focus {
-  @apply focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
-}
-
-.primary-gradient {
-  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
-}
-
-.footer-gradient {
-  background: linear-gradient(90deg, #182848 0%, #4b6cb7 80%);
+    @apply focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
 }
 
 .mobile-view {
-  @apply hidden lg:visible lg:flex;
+    @apply hidden lg:visible lg:flex;
 }
 
 .desktop-view {
-  @apply visible flex lg:hidden;
+    @apply visible flex lg:hidden;
+}
+
+.caveat-text {
+    font-family: 'Caveat';
+}
+
+.primary-gradient {
+    background: linear-gradient(90deg, #a6bfd3 0%, #f5f7fa 100%) !important;
+}
+
+.dark-primary-gradient {
+    background: linear-gradient(90deg, #141414 90%, #1c1c1c 100%) !important;
+}
+
+.footer-gradient {
+    background: linear-gradient(90deg, #141414 10%, #030303 50%);
+}
+
+.footer-gradient {
+    background: linear-gradient(90deg, #eaeff4 0%, #cfdce8 80%);
 }
 
 .placeholder {
-  @apply placeholder:text-light-400 dark:placeholder:text-light-500 text-lg;
+    @apply text-lg placeholder:text-light-500 dark:placeholder:text-light-400;
 }
 
-.bg-dark100_light800 {
-  @apply dark:bg-primary bg-white;
+.bg-primary-800 {
+    @apply bg-dark-800 dark:bg-light-100 !important;
+}
+
+.text-primary-800 {
+    @apply text-dark-800 dark:text-light-100 !important;
+}
+
+.text-primary-700 {
+    @apply text-dark-700 dark:text-light-200 !important;
+}
+
+.text-primary-600 {
+    @apply text-dark-600 dark:text-light-300 !important;
+}
+
+.text-primary-500 {
+    @apply text-dark-500 dark:text-light-400 !important;
+}
+
+.text-primary-400 {
+    @apply text-dark-400 dark:text-light-500 !important;
+}
+
+.text-primary-300 {
+    @apply text-dark-300 dark:text-light-600 !important;
+}
+
+.text-primary-200 {
+    @apply text-dark-200 dark:text-light-700 !important;
+}
+
+.text-primary-100 {
+    @apply text-dark-100 dark:text-light-800 !important;
+}
+
+.button-primary {
+    @apply min-h-16 rounded-lg bg-light-50 px-12 py-6 text-xl text-dark-800 hover:bg-primary-200 dark:bg-dark-800 dark:text-light-200 hover:dark:bg-dark-500 !important;
 }

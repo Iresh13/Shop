@@ -1,57 +1,46 @@
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import BannerCard from "./components/banner-card";
+import BannerCard from './components/banner-card'
+import { Category } from '@/schemas/category-schema'
+import { Product } from '@/schemas/product-schema'
+import CategoryCard from '@/components/cards/category-card'
+import ProductCard from '@/components/cards/product-card'
+import { Fragment } from 'react'
 
-export default function Home() {
-  return (
-    <>
-      <BannerCard />
+export default async function Home() {
+    const res = await fetch('http://localhost:3000/api/product')
+    const category = await fetch('http://localhost:3000/api/categories')
 
-      <h2 className="font-semibold text-4xl text-dark800_light200 uppercase">
-        New Arrivals
-      </h2>
+    const products = await res.json()
+    const categories = await category.json()
 
-      <h2 className="font-semibold text-4xl text-dark800_light200 uppercase">
-        Top Selling
-      </h2>
+    return (
+        <Fragment>
+            <BannerCard />
+            <section className="flex flex-col items-center justify-center gap-6">
+                <h2 className="-z-10 p-10 text-center text-4xl font-medium uppercase text-dark-800 opacity-100">
+                    Shop By Categories
+                </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
-        <div className="border-2 border-zinc-800 flex flex-col">
-          <Image
-            src="/model.png"
-            alt="shopping-image"
-            height={450}
-            width={550}
-            className="object-center"
-          />
-          <p>Jeans</p>
-          <p>$40.50</p>
-        </div>
+                <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
+                    {categories?.length > 0 &&
+                        categories.map((category: Category, index: number) => {
+                            return (
+                                <CategoryCard category={category} key={index} />
+                            )
+                        })}
+                </div>
+            </section>
 
-        <div className="border-2 border-zinc-800 flex flex-col">
-          <Image
-            src="/model.png"
-            alt="shopping-image"
-            height={450}
-            width={550}
-            className="object-center"
-          />
-          <p>Jeans</p>
-          <p>$40.50</p>
-        </div>
-
-        <div className="border-2 border-zinc-800 flex flex-col">
-          <Image
-            src="/model.png"
-            alt="shopping-image"
-            height={450}
-            width={550}
-            className="object-center"
-          />
-          <p>Jeans</p>
-          <p>$40.50</p>
-        </div>
-      </div>
-    </>
-  );
+            <section className="flex flex-col items-center justify-center gap-6">
+                <h2 className="-z-10 p-10 text-center text-4xl font-medium uppercase text-dark-800 opacity-100">
+                    Shop your favorites
+                </h2>
+                <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
+                    {products?.length > 0 &&
+                        products.map((product: Product, index: number) => {
+                            return <ProductCard product={product} key={index} />
+                        })}
+                </div>
+            </section>
+        </Fragment>
+    )
 }

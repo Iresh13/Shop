@@ -4,7 +4,7 @@ import React from "react";
 
 const BannerCard = () => {
   return (
-    <div className="primary-gradient w-full gap-10 flex items-center relative p-20">
+    <div className="primary-gradient w-full gap-10 flex items-center relative p-5 lg:p-20">
       <div className="gap-10 flex flex-col items-center justify-center lg:items-start lg:justify-start">
         <p className="font-semibold text-4xl text-dark-800 text-center ">
           New Summer 2024
